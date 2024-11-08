@@ -26,7 +26,6 @@ public class PlayerControl : MonoBehaviour
     float angle = 270;
 
 
-    public Animator playerAnimation;
     public TextMeshProUGUI healthStatus;
 
 
@@ -59,16 +58,6 @@ public class PlayerControl : MonoBehaviour
     {
         move = moveAction.ReadValue<Vector2>();
 
-        if (move.x > 0 && !isFacingRight) { 
-            Flip();
-        }
-        else if (move.x < 0 && isFacingRight)
-        {
-            Flip();
-
-        }
-
-
         if (isInvincible)
         {
             damageCooldown -= Time.deltaTime;
@@ -78,12 +67,14 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if (pauseAction.WasPressedThisFrame()) {
+        if (pauseAction.WasPressedThisFrame())
+        {
             Pause.isPaused = !Pause.isPaused;
             Debug.Log("Pressed: " + Pause.isPaused);
         }
 
-        if (shootAction.WasPressedThisFrame() && fireTimer <= 0) { 
+        if (shootAction.WasPressedThisFrame() && fireTimer <= 0)
+        {
             GameObject bullet1 = Instantiate(bullet, firingPoint.position, firingPoint.rotation);
 
             Ranged b1Data = bullet1.GetComponent<Ranged>();
@@ -92,7 +83,7 @@ public class PlayerControl : MonoBehaviour
 
             b1Data.shooter = gameObject.name;
 
-            b1Data.angle= angle;
+            b1Data.angle = angle;
 
             fireTimer = fireRate;
         }
@@ -116,31 +107,10 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        bool isMove = move == new Vector2(0.0f,0.0f);
-
         Vector2 position = (Vector2)rb.position + (move * speed * Time.deltaTime);
-
-        if (!isMove)
-        {
-            playerAnimation.Play("Walk");
-        }
-        else {
-            playerAnimation.Play("playerIdle");
-        }
-
 
 
         rb.MovePosition(position);
-    }
-
-    void Flip()
-    {
-        isFacingRight = !isFacingRight;
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
-        angle *= -1;
-
     }
 
     public void changeHealth(int health)

@@ -252,8 +252,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1530509233}
   - component: {fileID: 1530509232}
-  - component: {fileID: 1530509234}
   - component: {fileID: 1530509235}
+  - component: {fileID: 1530509237}
   - component: {fileID: 1530509236}
   m_Layer: 0
   m_Name: Player
@@ -329,94 +329,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &1530509234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1530509231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abae45c62bfd3ee4db8001fc55c2c626, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: acb7c43d-afa4-41e4-a0ba-99641f34de50
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 2D Vector
-      m_Id: 22274c6a-e6fb-40cc-ad87-7acb3b576b1e
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 4
-    - m_Name: up
-      m_Id: 3454411c-a54a-48b9-9583-9594b7be9bdb
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: down
-      m_Id: abd5da85-2a14-4b24-86ac-c86383ac16c8
-      m_Path: <Keyboard>/anyKey
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: left
-      m_Id: 3903b697-1f76-49a8-82e8-f24d71c896d1
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: right
-      m_Id: cdba4a6c-5fb3-49d9-9f4a-75034edb7bc2
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    m_Flags: 0
-  pauseAction:
-    m_Name: Pause
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: fed9bddf-1c1e-4a02-a19a-466230606dc3
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  maxHealth: 15
-  timeInvincible: 1
-  shootAction:
-    m_Name: Shoot
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 9757559a-4c74-46cf-9eb6-8210dc96dc09
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  firingPoint: {fileID: 0}
-  fireRate: 0.5
-  bullet: {fileID: 0}
-  rangedDamage: 3
-  playerAnimation: {fileID: 0}
-  healthStatus: {fileID: 0}
 --- !u!70 &1530509235
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -479,6 +391,53 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1530509237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530509231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abae45c62bfd3ee4db8001fc55c2c626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 914773c5-f879-4b43-9947-91fb6978fffb
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  pauseAction:
+    m_Name: Pause
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 829f008f-6e5a-4c08-8737-47f0c8e50424
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  maxHealth: 0
+  timeInvincible: 0
+  shootAction:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: faa6959f-e514-4bf8-bdaf-9b943edba027
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  firingPoint: {fileID: 0}
+  fireRate: 0.5
+  bullet: {fileID: 0}
+  rangedDamage: 3
+  healthStatus: {fileID: 0}
 --- !u!1 &1794417860
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,5 +710,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 2104193482}
   - {fileID: 1794417862}
-  - {fileID: 1869134801}
   - {fileID: 1530509233}
+  - {fileID: 1869134801}

@@ -1,4 +1,0 @@
-repository "Team2-WEC2024@PikaKight@cloud"
-  path "/"
-    br "/main"
-    co "/main"
