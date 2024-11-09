@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class Ranged : Collidable
 {
-    public int damage;
+    public int damage = 1;  // Set to 1 to reduce health by one on hit
     public float speed = 10f;
     public float lifeTime = 3f;
+    public float angle;
     public string shooter;
-    public Transform firingPoint;
-
 
     private Rigidbody2D rb;
 
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
@@ -24,12 +22,12 @@ public class Ranged : Collidable
 
     void FixedUpdate()
     {
+        rb.rotation = angle;
         rb.velocity = transform.up * speed;
     }
 
     protected override void OnCollide(Collider2D coll)
     {
-
         if (coll.tag == "Fighter" && coll.name != shooter)
         {
             switch (shooter)
@@ -39,7 +37,7 @@ public class Ranged : Collidable
 
                     if (enemyController != null)
                     {
-                        enemyController.changeHealth(damage * -1);
+                        enemyController.changeHealth(-damage);  // Decrease enemy health by 1
                     }
                     break;
 
@@ -47,7 +45,7 @@ public class Ranged : Collidable
                     PlayerControl playerControl = coll.GetComponent<PlayerControl>();
                     if (playerControl != null)
                     {
-                        playerControl.changeHealth(damage * -1);
+                        playerControl.changeHealth(-damage);
                     }
                     break;
 
@@ -55,7 +53,7 @@ public class Ranged : Collidable
                     return;
             }
 
-            Destroy(gameObject);
+            Destroy(gameObject);  // Destroy the bullet on hit
         }
     }
 }

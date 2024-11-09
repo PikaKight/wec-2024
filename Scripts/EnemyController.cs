@@ -7,7 +7,6 @@ public class EnemyController : MonoBehaviour
     public float speed;
     public float maxMoveTime;
     public bool verticle;
-    public bool random;
     public int damage;
     public bool range;
     public float firingRate = 0.5f;
@@ -22,12 +21,10 @@ public class EnemyController : MonoBehaviour
     public int maxHealth;
     float currentHealth;
 
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         moveTime = maxMoveTime;
-
         currentHealth = maxHealth;
     }
 
@@ -37,24 +34,17 @@ public class EnemyController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            gameObject.SetActive(false);  // Enemy is "dead"
         }
-        else
-        {
-            gameObject.SetActive(true);
-        }
-
 
         if (range && firingTimer < 0)
         {
-
             GameObject bullet1 = Instantiate(bullet, gameObject.transform.position, gameObject.transform.rotation);
 
             Ranged b1Data = bullet1.GetComponent<Ranged>();
-
-            b1Data.damage = damage;
-
+            b1Data.damage = damage;  // Bullet inherits enemy's damage
             b1Data.shooter = gameObject.name;
+            b1Data.angle = 270;
 
             firingTimer = firingRate;
         }
@@ -80,14 +70,11 @@ public class EnemyController : MonoBehaviour
 
         if (verticle)
         {
-            position.y = position.y + speed * Time.deltaTime;
-
+            position.y += speed * Time.deltaTime;
         }
-
         else
         {
-            position.x = position.x + speed * Time.deltaTime;
-
+            position.x += speed * Time.deltaTime;
         }
 
         rb.MovePosition(position);
@@ -101,14 +88,13 @@ public class EnemyController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + health, 0, maxHealth);
     }
 
-
     void OnCollisionEnter2D(Collision2D other)
     {
         PlayerControl player = other.gameObject.GetComponent<PlayerControl>();
 
         if (player != null)
         {
-            player.changeHealth(damage * -1);
+            player.changeHealth(-damage);
         }
     }
 }
