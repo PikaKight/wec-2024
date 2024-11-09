@@ -7,8 +7,9 @@ public class Ranged : Collidable
     public int damage;
     public float speed = 10f;
     public float lifeTime = 3f;
-    public float angle;
     public string shooter;
+    public Transform firingPoint;
+
 
     private Rigidbody2D rb;
 
@@ -16,15 +17,13 @@ public class Ranged : Collidable
     protected override void Start()
     {
         base.Start();
-        
+
         rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, lifeTime);
     }
 
     void FixedUpdate()
     {
-        rb.rotation = angle;
-
         rb.velocity = transform.up * speed;
     }
 
@@ -33,13 +32,14 @@ public class Ranged : Collidable
 
         if (coll.tag == "Fighter" && coll.name != shooter)
         {
-            switch (shooter){
+            switch (shooter)
+            {
                 case "Player":
                     EnemyController enemyController = coll.GetComponent<EnemyController>();
 
                     if (enemyController != null)
                     {
-                        enemyController.changeHealth(damage * -1);   
+                        enemyController.changeHealth(damage * -1);
                     }
                     break;
 
@@ -54,7 +54,7 @@ public class Ranged : Collidable
                 default:
                     return;
             }
-            
+
             Destroy(gameObject);
         }
     }

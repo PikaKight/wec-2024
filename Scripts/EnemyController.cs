@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     public bool range;
     public float firingRate = 0.5f;
     public GameObject bullet;
-    
+
     Rigidbody2D rb;
 
     float moveTime;
@@ -34,8 +34,9 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         Debug.Log(gameObject.gameObject.name + " Health: " + currentHealth);
-        
-        if (currentHealth <= 0) { 
+
+        if (currentHealth <= 0)
+        {
             gameObject.SetActive(false);
         }
         else
@@ -44,7 +45,8 @@ public class EnemyController : MonoBehaviour
         }
 
 
-        if (range && firingTimer < 0) {
+        if (range && firingTimer < 0)
+        {
 
             GameObject bullet1 = Instantiate(bullet, gameObject.transform.position, gameObject.transform.rotation);
 
@@ -53,9 +55,6 @@ public class EnemyController : MonoBehaviour
             b1Data.damage = damage;
 
             b1Data.shooter = gameObject.name;
-
-            b1Data.angle = 270;
-
 
             firingTimer = firingRate;
         }
@@ -73,20 +72,22 @@ public class EnemyController : MonoBehaviour
             moveTime = maxMoveTime;
         }
 
-        if (random && (wait < 0)) {
-            verticle = ! verticle;
+        if (random && (wait < 0))
+        {
+            verticle = !verticle;
             wait = 5;
         }
 
-        if (verticle) {
+        if (verticle)
+        {
             position.y = position.y + speed * Time.deltaTime;
-            
+
         }
 
         else
         {
             position.x = position.x + speed * Time.deltaTime;
-        
+
         }
 
         rb.MovePosition(position);
@@ -105,8 +106,9 @@ public class EnemyController : MonoBehaviour
     {
         PlayerControl player = other.gameObject.GetComponent<PlayerControl>();
 
-        if (player != null) {
-            player.changeHealth(damage*-1);
+        if (player != null)
+        {
+            player.changeHealth(damage * -1);
         }
     }
 }

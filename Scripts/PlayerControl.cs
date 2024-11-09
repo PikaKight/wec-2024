@@ -23,8 +23,6 @@ public class PlayerControl : MonoBehaviour
     public GameObject bullet;
     public int rangedDamage = 3;
     float fireTimer;
-    float angle = 270;
-
 
     public TextMeshProUGUI healthStatus;
 
@@ -82,8 +80,6 @@ public class PlayerControl : MonoBehaviour
             b1Data.damage = rangedDamage;
 
             b1Data.shooter = gameObject.name;
-
-            b1Data.angle = angle;
 
             fireTimer = fireRate;
         }
